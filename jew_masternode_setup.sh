@@ -30,6 +30,9 @@ cd ..
 make
 make install
 
+
+RPC_PASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+
 echo rpcuser=shekelrpc >> /root/.shekel/shekel.conf
-echo rpcpassword=3zoMLbdN6SLayKahEhV43NVcpfVJZb3dWWEW9QdkMdZZ >> /root/.shekel/shekel.conf
+echo rpcpassword=$RPC_PASSWORD >> /root/.shekel/shekel.conf
 shekeld -daemon
